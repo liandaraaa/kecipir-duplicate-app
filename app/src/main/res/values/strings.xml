@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Kecipir Duplicate App</string>
+    <string name="hint_search_product">Cari Sayur Organik</string>
+    <string name="label_delivery_date">Tanggal Pengiriman</string>
+    <string name="sample_date">Senin, 11 Mei 2020</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_profile">Profile</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_under_constructor">Under Constructor</string>
 </resources>
