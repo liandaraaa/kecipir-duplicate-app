@@ -48,4 +48,12 @@
         <item name="android:textColor">@color/colorWhite</item>
     </style>
 
+    <style name="SubHeaderTextView.White">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="BodyTextView.Accent">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
 </resources>
