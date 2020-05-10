@@ -3,7 +3,7 @@ package com.lianda.kecipirduplicateapp.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class ApiResponse(
+data class ProductResponse(
     @SerializedName("code")
     val code: Int,
     @SerializedName("data")

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.lianda.kecipirduplicateapp.R
 import com.lianda.kecipirduplicateapp.data.model.Product
+import com.lianda.kecipirduplicateapp.utils.getCurrency
 import com.lianda.topstoryapp.utils.showImageUrl
 import kotlinx.android.synthetic.main.item_product.view.*
 
@@ -29,8 +30,8 @@ class ProductAdapter(val context:Context, val datas:List<Product>) :RecyclerView
                 imgProduct.showImageUrl(context, data.photo)
                 tvName.text = data.title
                 tvDiscount.text = data.discount
-                tvPrice.text = data.sellPrice
-                tvPromoPrice.text = data.promoPrice
+                tvPrice.text = getCurrency(data.sellPrice)
+                tvPromoPrice.text = getCurrency(data.promoPrice)
                 ratingProduct.rating = data.rating.toFloat()
 
                 tvDiscount.visibility = if(data.discount != "0%") View.VISIBLE else View.GONE

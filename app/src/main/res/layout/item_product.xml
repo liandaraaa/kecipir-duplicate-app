@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/imgProduct"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dimen_100dp"
+            android:layout_height="@dimen/dimen_100dp"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,18 +25,24 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvName"
+            android:layout_width="0dp"
             style="@style/SubHeaderTextView"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="@dimen/dimen_8dp"
             android:ellipsize="end"
             android:maxLines="2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgProduct"
+            app:layout_constraintEnd_toEndOf="@id/imgProduct"
             tools:text="@string/sample_veggie_name" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDiscount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="@dimen/dimen_4dp"
             android:background="@color/colorRedTransparent"
             android:visibility="gone"
@@ -47,6 +53,8 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvPrice"
             style="@style/BodyTextView.Accent"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="@dimen/dimen_4dp"
             app:layout_constraintStart_toEndOf="@id/tvDiscount"
             app:layout_constraintTop_toBottomOf="@id/tvName"
@@ -55,6 +63,8 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvPromoPrice"
             style="@style/BodyTextView.Accent"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="@dimen/dimen_4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDiscount"
@@ -65,10 +75,14 @@
             style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="@dimen/dimen_4dp"
+            android:layout_marginBottom="@dimen/dimen_4dp"
             android:numStars="5"
             android:rating="3.5"
             android:stepSize="0.5"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvPromoPrice" />

@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     fun showCurrentDate(){
         tvDeliveryDate.text = getCurrentDate()
+        replaceFragment(R.id.contentContainer, HomeFragment.newInstance())
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

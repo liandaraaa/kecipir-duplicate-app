@@ -2,6 +2,7 @@ package com.lianda.kecipirduplicateapp.application
 
 import android.app.Application
 import com.lianda.kecipirduplicateapp.depth.koin.KoinContext
+import com.lianda.kecipirduplicateapp.depth.module.productModule
 import com.lianda.kecipirduplicateapp.depth.module.serviceModule
 import com.lianda.kecipirduplicateapp.depth.module.utilityModule
 import org.koin.android.ext.koin.androidContext
@@ -18,9 +19,8 @@ class KecipirDuplicateApplication :Application(){
             modules(
                 listOf(
                     serviceModule,
-                    utilityModule
-//                    preferenceModule,
-//                    storyModule
+                    utilityModule,
+                    productModule
                 )
             )
         }

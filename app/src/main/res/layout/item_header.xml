@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/msvHeader"
-    app:msv_viewState="loading"
+    app:msv_viewState="content"
     app:msv_loadingView="@layout/layout_shimmer_header">
 
     <androidx.constraintlayout.widget.ConstraintLayout

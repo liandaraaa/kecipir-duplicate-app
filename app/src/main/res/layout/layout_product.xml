@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     app:msv_loadingView="@layout/layout_shimmer_product"
-    app:msv_viewState="loading">
+    app:msv_viewState="content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,6 +15,8 @@
             android:id="@+id/rvProduct"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="@dimen/dimen_8dp"
+            android:clipToPadding="false"
             tools:listitem="@layout/item_product" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

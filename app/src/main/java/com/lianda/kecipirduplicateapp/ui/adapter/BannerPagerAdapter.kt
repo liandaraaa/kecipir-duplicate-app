@@ -14,14 +14,15 @@ class BannerPagerAdapter (val context:Context, val datas:List<Banner>): PagerAda
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val layout = LayoutInflater.from(context).inflate(R.layout.item_banner, container, false)
-        container.addView(layout)
 
         with(layout){
             tvName.text = datas[position].title
+            tvDiscount.text = datas[position].discount
             imgBanner.showImageUrl(context, datas[position].photo)
         }
 
-        return container
+        container.addView(layout)
+        return layout
     }
 
     override fun isViewFromObject(view: View, obj: Any): Boolean {
@@ -30,6 +31,10 @@ class BannerPagerAdapter (val context:Context, val datas:List<Banner>): PagerAda
 
     override fun getCount(): Int {
         return datas.size
+    }
+
+    override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {
+        container.removeView(obj as View)
     }
 
 }

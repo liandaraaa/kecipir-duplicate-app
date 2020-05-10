@@ -18,6 +18,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            debuggable true
+            buildConfigField("String", "BASE_URL", "\"https://cdn.kecipir.com/\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
