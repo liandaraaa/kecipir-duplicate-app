@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lianda.kecipirduplicateapp.R
 import com.lianda.kecipirduplicateapp.data.model.Product
 import com.lianda.kecipirduplicateapp.utils.getCurrency
-import com.lianda.topstoryapp.utils.showImageUrl
+import com.lianda.kecipirduplicateapp.utils.showImageUrl
 import kotlinx.android.synthetic.main.item_product.view.*
 
 class ProductAdapter(val context:Context, val datas:List<Product>, val onProductClick:((data:Product)->Unit)? = null) :RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(){

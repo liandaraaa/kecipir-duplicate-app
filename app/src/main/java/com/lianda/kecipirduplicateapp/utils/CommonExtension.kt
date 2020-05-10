@@ -1,4 +1,4 @@
-package com.lianda.topstoryapp.utils
+package com.lianda.kecipirduplicateapp.utils
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -22,7 +22,7 @@ fun View.visible(){
     this.visibility = View.VISIBLE
 }
 
-fun AppCompatActivity.replaceFragment(layoutId:Int, fragment:Fragment, isBackStack:Boolean = true){
+fun AppCompatActivity.replaceFragment(layoutId:Int, fragment:Fragment, isBackStack:Boolean = false){
     supportFragmentManager
         .beginTransaction()
         .replace(layoutId, fragment)

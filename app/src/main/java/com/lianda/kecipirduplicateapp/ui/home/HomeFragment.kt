@@ -20,6 +20,7 @@ import com.lianda.kecipirduplicateapp.ui.groupie.HeaderGroupieItem
 import com.lianda.kecipirduplicateapp.ui.groupie.ProductGroupieItem
 import com.lianda.kecipirduplicateapp.ui.product.ProductDetailActivity
 import com.lianda.kecipirduplicateapp.ui.viewmodel.ProductViewModel
+import com.lianda.kecipirduplicateapp.utils.getCurrentDate
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -47,8 +48,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        showCurrentDate()
+        
         productViewModel.getProducts()
         observeData()
+    }
+
+    private fun showCurrentDate(){
+        tvDeliveryDate.text = getCurrentDate()
     }
 
     private fun observeData(){

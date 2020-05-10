@@ -2,14 +2,13 @@ package com.lianda.kecipirduplicateapp.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lianda.kecipirduplicateapp.R
 import com.lianda.kecipirduplicateapp.ui.home.HomeFragment
 import com.lianda.kecipirduplicateapp.ui.placeholder.PlaceholderFragment
 import com.lianda.kecipirduplicateapp.utils.getCurrentDate
-import com.lianda.topstoryapp.utils.replaceFragment
+import com.lianda.kecipirduplicateapp.utils.replaceFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -20,11 +19,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         bnvMain.setOnNavigationItemSelectedListener(this)
 
-        showCurrentDate()
-    }
-
-    fun showCurrentDate(){
-        tvDeliveryDate.text = getCurrentDate()
         replaceFragment(R.id.contentContainer, HomeFragment.newInstance())
     }
 

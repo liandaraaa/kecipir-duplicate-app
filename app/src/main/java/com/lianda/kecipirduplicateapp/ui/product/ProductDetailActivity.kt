@@ -6,6 +6,7 @@ import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
@@ -16,8 +17,9 @@ import com.lianda.kecipirduplicateapp.depth.service.model.Resource
 import com.lianda.kecipirduplicateapp.ui.adapter.ProductAdapter
 import com.lianda.kecipirduplicateapp.ui.viewmodel.ProductViewModel
 import com.lianda.kecipirduplicateapp.utils.getCurrency
-import com.lianda.topstoryapp.utils.showImageUrl
+import com.lianda.kecipirduplicateapp.utils.showImageUrl
 import kotlinx.android.synthetic.main.activity_product_detail.*
+import org.jetbrains.anko.share
 import org.jetbrains.anko.startActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -111,10 +113,23 @@ class ProductDetailActivity : AppCompatActivity() {
         start(this, data)
     }
 
-     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-             if (item.itemId == android.R.id.home){
-                 onBackPressed()
-             }
-             return super.onOptionsItemSelected(item)
-         }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_share, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> onBackPressed()
+            R.id.menuShare -> share()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun share(){
+        share(
+            text = product?.title.orEmpty(),
+            subject = product?.shareLink.orEmpty()
+        )
+    }
 }

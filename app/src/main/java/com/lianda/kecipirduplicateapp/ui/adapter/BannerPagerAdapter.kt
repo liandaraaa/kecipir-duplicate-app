@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import com.lianda.kecipirduplicateapp.R
-import com.lianda.kecipirduplicateapp.data.model.Banner
 import com.lianda.kecipirduplicateapp.data.model.Product
-import com.lianda.topstoryapp.utils.showImageUrl
+import com.lianda.kecipirduplicateapp.utils.showImageUrl
 import kotlinx.android.synthetic.main.item_banner.view.*
 
 class BannerPagerAdapter (val context:Context, val datas:List<Product>, val onBannerClicked:((product:Product)->Unit)? =null): PagerAdapter() {
