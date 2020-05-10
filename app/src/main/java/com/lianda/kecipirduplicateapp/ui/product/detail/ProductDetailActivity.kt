@@ -1,11 +1,10 @@
-package com.lianda.kecipirduplicateapp.ui.product
+package com.lianda.kecipirduplicateapp.ui.product.detail
 
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -113,7 +112,10 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun toProductDetail(data: Product) {
-        start(this, data)
+        start(
+            this,
+            data
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

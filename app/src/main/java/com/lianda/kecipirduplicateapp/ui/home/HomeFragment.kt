@@ -1,7 +1,6 @@
 package com.lianda.kecipirduplicateapp.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +17,9 @@ import com.lianda.kecipirduplicateapp.ui.groupie.BannerGroupieItem
 import com.lianda.kecipirduplicateapp.ui.groupie.CategoryGroupieItem
 import com.lianda.kecipirduplicateapp.ui.groupie.HeaderGroupieItem
 import com.lianda.kecipirduplicateapp.ui.groupie.ProductGroupieItem
-import com.lianda.kecipirduplicateapp.ui.product.ProductDetailActivity
+import com.lianda.kecipirduplicateapp.ui.product.detail.ProductDetailActivity
 import com.lianda.kecipirduplicateapp.ui.viewmodel.ProductViewModel
 import com.lianda.kecipirduplicateapp.utils.getCurrentDate
-import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Section
@@ -34,8 +32,13 @@ class HomeFragment : Fragment() {
         fun newInstance() = HomeFragment()
     }
 
-    private val groupieAdapter = GroupAdapter<GroupieViewHolder>()
-    private val section = Section()
+    private val groupieAdapter:GroupAdapter<GroupieViewHolder> by lazy {
+        GroupAdapter<GroupieViewHolder>()
+    }
+
+    private val section :Section by lazy {
+        Section()
+    }
 
     private val productViewModel:ProductViewModel by viewModel()
 
