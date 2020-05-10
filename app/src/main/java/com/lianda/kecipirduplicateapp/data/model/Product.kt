@@ -1,8 +1,11 @@
 package com.lianda.kecipirduplicateapp.data.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Product(
     @SerializedName("code")
     val code: String,
@@ -42,4 +45,4 @@ data class Product(
     val titleEn: String,
     @SerializedName("unit")
     val unit: String
-)
+) : Parcelable

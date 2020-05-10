@@ -12,7 +12,7 @@ import com.lianda.kecipirduplicateapp.utils.getCurrency
 import com.lianda.topstoryapp.utils.showImageUrl
 import kotlinx.android.synthetic.main.item_product.view.*
 
-class ProductAdapter(val context:Context, val datas:List<Product>) :RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(){
+class ProductAdapter(val context:Context, val datas:List<Product>, val onProductClick:((data:Product)->Unit)? = null) :RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         return ProductViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product, parent, false))
@@ -37,6 +37,9 @@ class ProductAdapter(val context:Context, val datas:List<Product>) :RecyclerView
                 tvDiscount.visibility = if(data.discount != "0%") View.VISIBLE else View.GONE
                 if(data.discount != "0%") tvPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
 
+                setOnClickListener {
+                    onProductClick?.invoke(data)
+                }
             }
         }
     }

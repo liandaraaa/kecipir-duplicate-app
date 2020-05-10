@@ -9,10 +9,10 @@ import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
 import kotlinx.android.synthetic.main.layout_product.*
 
-class ProductGroupieItem (val context:Context, val datas:List<Product>): Item(){
+class ProductGroupieItem (val context:Context, val datas:List<Product>,  val onProductClick:((data:Product)->Unit)? = null): Item(){
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         with(viewHolder){
-            val productAdapter = ProductAdapter(context, datas)
+            val productAdapter = ProductAdapter(context, datas, onProductClick)
             rvProduct.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = productAdapter

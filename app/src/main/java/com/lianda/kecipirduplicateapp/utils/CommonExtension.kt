@@ -22,7 +22,7 @@ fun View.visible(){
     this.visibility = View.VISIBLE
 }
 
-fun AppCompatActivity.replaceFragment(layoutId:Int, fragment:Fragment, isBackStack:Boolean = false){
+fun AppCompatActivity.replaceFragment(layoutId:Int, fragment:Fragment, isBackStack:Boolean = true){
     supportFragmentManager
         .beginTransaction()
         .replace(layoutId, fragment)

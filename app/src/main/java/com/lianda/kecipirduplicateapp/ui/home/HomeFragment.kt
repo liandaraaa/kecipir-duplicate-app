@@ -18,6 +18,7 @@ import com.lianda.kecipirduplicateapp.ui.groupie.BannerGroupieItem
 import com.lianda.kecipirduplicateapp.ui.groupie.CategoryGroupieItem
 import com.lianda.kecipirduplicateapp.ui.groupie.HeaderGroupieItem
 import com.lianda.kecipirduplicateapp.ui.groupie.ProductGroupieItem
+import com.lianda.kecipirduplicateapp.ui.product.ProductDetailActivity
 import com.lianda.kecipirduplicateapp.ui.viewmodel.ProductViewModel
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
@@ -62,6 +63,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun showHomeContent(datas: List<Product>){
+        groupieAdapter.add(HeaderGroupieItem("Produk Diskon Hari Ini"))
         groupieAdapter.add(showBannerItem(datas))
 
         groupieAdapter.add(HeaderGroupieItem("Kategori Produk"))
@@ -80,12 +82,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun showBannerItem(datas:List<Product>):Group{
-        val banners = mutableListOf<Banner>()
-        datas.filter { it.discount != "0%" }.forEach {product->
-            val banner = Banner(product.photo, product.title, product.discount)
-            banners.add(banner)
+        val banners = datas.filter { it.discount != "0%" }
+        return BannerGroupieItem(requireContext(),banners) { product->
+            toProductDetail(product)
         }
-        return BannerGroupieItem(requireContext(),banners)
     }
 
     private fun showCategoryItem(datas:List<Product>):Group{
@@ -98,6 +98,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun showProductItem(datas: List<Product>):Group{
-        return ProductGroupieItem(requireContext(), datas)
+        return ProductGroupieItem(requireContext(), datas) { product->
+            toProductDetail(product)
+        }
+    }
+
+    private fun toProductDetail(data:Product){
+        ProductDetailActivity.start(requireContext(), data)
     }
 }

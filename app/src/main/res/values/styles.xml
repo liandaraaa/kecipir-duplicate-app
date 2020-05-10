@@ -52,8 +52,36 @@
         <item name="android:textColor">@color/colorWhite</item>
     </style>
 
+    <style name="HeaderTextView.White">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
     <style name="BodyTextView.Accent">
         <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="SubHeaderTextView.Accent">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="SubHeaderTextView.Grey">
+        <item name="android:textColor">@color/colorGrey</item>
+    </style>
+
+    <style name="BodyTextView.Grey">
+        <item name="android:textColor">@color/colorGrey</item>
+    </style>
+
+    <style name="SubHeaderTextView.Transparent">
+        <item name="android:textColor">@color/colorTransparent</item>
+    </style>
+
+    <style name="HeaderTextView.Transparent">
+        <item name="android:textColor">@color/colorTransparent</item>
+    </style>
+
+    <style name="SubHeaderTextView.Primary">
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
 </resources>

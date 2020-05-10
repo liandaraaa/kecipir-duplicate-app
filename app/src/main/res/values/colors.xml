@@ -10,5 +10,6 @@
     <color name="colorLightGrey">#dddddd</color>
     <color name="colorRedTransparent">#D3F40808</color>
     <color name="colorPrimaryTransparent">#7E28A745</color>
+    <color name="colorTransparent">#0028A745</color>
 
 </resources>
