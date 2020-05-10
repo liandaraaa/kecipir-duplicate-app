@@ -18,6 +18,7 @@ import com.lianda.kecipirduplicateapp.ui.groupie.CategoryGroupieItem
 import com.lianda.kecipirduplicateapp.ui.groupie.HeaderGroupieItem
 import com.lianda.kecipirduplicateapp.ui.groupie.ProductGroupieItem
 import com.lianda.kecipirduplicateapp.ui.product.detail.ProductDetailActivity
+import com.lianda.kecipirduplicateapp.ui.product.list.ProductListActivity
 import com.lianda.kecipirduplicateapp.ui.viewmodel.ProductViewModel
 import com.lianda.kecipirduplicateapp.utils.getCurrentDate
 import com.xwray.groupie.GroupAdapter
@@ -86,16 +87,20 @@ class HomeFragment : Fragment() {
     }
 
     private fun initHomeContent(){
-        section.add(HeaderGroupieItem("Produk Diskon Hari Ini"))
+        section.add(HeaderGroupieItem(getString(R.string.title_todays_discount)))
         section.add(bannerGroupieItem!!)
 
-        section.add(HeaderGroupieItem("Kategori Produk"))
+        section.add(HeaderGroupieItem(getString(R.string.title_product_category)))
         section.add(categoryGroupieItem!!)
 
-        section.add(HeaderGroupieItem("Produk Terlaris"))
+        section.add(HeaderGroupieItem(getString(R.string.title_popular_product)) {
+            toProductList(true)
+        })
         section.add(popularProductGroupieItem!!)
 
-        section.add(HeaderGroupieItem("Semua Produk"))
+        section.add(HeaderGroupieItem(getString(R.string.title_all_product)){
+            toProductList()
+        })
         section.add(allProductGroupieItem!!)
 
         groupieAdapter.add(section)
@@ -183,5 +188,9 @@ class HomeFragment : Fragment() {
 
     private fun toProductDetail(data:Product){
         ProductDetailActivity.start(requireContext(), data)
+    }
+
+    private fun toProductList(isPopularProduct:Boolean = false){
+        ProductListActivity.start(requireContext(), isPopularProduct)
     }
 }

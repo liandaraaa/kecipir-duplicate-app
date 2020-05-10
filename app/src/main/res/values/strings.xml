@@ -15,4 +15,8 @@
     <string name="format_product_sold">51 Produk Terjual</string>
     <string name="sample_total_rating">5.0</string>
     <string name="label_review_product">Review Produk</string>
+    <string name="title_todays_discount">Produk Diskon Hari Ini</string>
+    <string name="title_product_category">Kategori Produk</string>
+    <string name="title_popular_product">Produk Terlaris</string>
+    <string name="title_all_product">Semua Produk</string>
 </resources>
