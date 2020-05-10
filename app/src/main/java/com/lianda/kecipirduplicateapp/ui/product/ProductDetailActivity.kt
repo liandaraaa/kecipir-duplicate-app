@@ -16,6 +16,7 @@ import com.lianda.kecipirduplicateapp.R
 import com.lianda.kecipirduplicateapp.data.model.Product
 import com.lianda.kecipirduplicateapp.depth.service.model.Resource
 import com.lianda.kecipirduplicateapp.ui.adapter.ProductAdapter
+import com.lianda.kecipirduplicateapp.ui.adapter.ProductAdapter.Companion.FEW_PRODUCT
 import com.lianda.kecipirduplicateapp.ui.viewmodel.ProductViewModel
 import com.lianda.kecipirduplicateapp.utils.getCurrency
 import com.lianda.kecipirduplicateapp.utils.showImageUrl
@@ -82,24 +83,25 @@ class ProductDetailActivity : AppCompatActivity() {
         productVieModel.products.observe(this, Observer {
             when (it) {
                 is Resource.Loading -> msvProduct.viewState = MultiStateView.ViewState.LOADING
-                is Resource.Empty -> {
-                    Log.d("product", "empty")
-                }
+                is Resource.Empty -> msvProduct.viewState = MultiStateView.ViewState.EMPTY
                 is Resource.Success -> {
                     msvProduct.viewState = MultiStateView.ViewState.CONTENT
                     showProducts(it.data)
                 }
-                is Resource.Error -> {
-                    Log.d("product", "error ${it.message}")
-                }
+                is Resource.Error -> msvProduct.viewState = MultiStateView.ViewState.ERROR
             }
         })
     }
 
     private fun showProducts(products: List<Product>) {
-        val productAdapter = ProductAdapter(this, products) { product ->
-            toProductDetail(product)
-        }
+        val productAdapter = ProductAdapter(
+            context = this,
+            datas = products,
+            onProductClick = {product ->
+            toProductDetail(product)},
+            type = FEW_PRODUCT
+        )
+
         rvProduct.apply {
             layoutManager = LinearLayoutManager(
                 this@ProductDetailActivity,

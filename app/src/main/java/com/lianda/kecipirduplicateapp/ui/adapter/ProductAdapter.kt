@@ -12,13 +12,23 @@ import com.lianda.kecipirduplicateapp.utils.getCurrency
 import com.lianda.kecipirduplicateapp.utils.showImageUrl
 import kotlinx.android.synthetic.main.item_product.view.*
 
-class ProductAdapter(val context:Context, val datas:List<Product>, val onProductClick:((data:Product)->Unit)? = null) :RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(){
+class ProductAdapter(
+    val context:Context,
+    val datas:List<Product>,
+    val onProductClick:((data:Product)->Unit)? = null,
+    val type:String = ALL_PRODUCT
+) :RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(){
+
+    companion object{
+        const val ALL_PRODUCT = "all_product"
+        const val FEW_PRODUCT = "few_product"
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         return ProductViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product, parent, false))
     }
 
-    override fun getItemCount(): Int = datas.size
+    override fun getItemCount(): Int = if(type == ALL_PRODUCT) datas.size else 5
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.bind(datas[position])

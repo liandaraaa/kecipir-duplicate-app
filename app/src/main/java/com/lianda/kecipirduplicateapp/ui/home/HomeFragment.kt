@@ -24,6 +24,7 @@ import com.lianda.kecipirduplicateapp.utils.getCurrentDate
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Section
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -34,6 +35,7 @@ class HomeFragment : Fragment() {
     }
 
     private val groupieAdapter = GroupAdapter<GroupieViewHolder>()
+    private val section = Section()
 
     private val productViewModel:ProductViewModel by viewModel()
 
@@ -58,6 +60,11 @@ class HomeFragment : Fragment() {
 
         productViewModel.getProducts()
         observeData()
+
+    }
+
+    private fun showCurrentDate(){
+        tvDeliveryDate.text = getCurrentDate()
     }
 
     private fun initGroupie(){
@@ -71,19 +78,38 @@ class HomeFragment : Fragment() {
         allProductGroupieItem = ProductGroupieItem(requireContext(), mutableListOf()){ product->
             toProductDetail(product)
         }
+
+        initHomeContent()
     }
 
-    private fun showCurrentDate(){
-        tvDeliveryDate.text = getCurrentDate()
+    private fun initHomeContent(){
+        section.add(HeaderGroupieItem("Produk Diskon Hari Ini"))
+        section.add(bannerGroupieItem!!)
+
+        section.add(HeaderGroupieItem("Kategori Produk"))
+        section.add(categoryGroupieItem!!)
+
+        section.add(HeaderGroupieItem("Produk Terlaris"))
+        section.add(popularProductGroupieItem!!)
+
+        section.add(HeaderGroupieItem("Semua Produk"))
+        section.add(allProductGroupieItem!!)
+
+        groupieAdapter.add(section)
+
+        rvHomeContent.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = groupieAdapter
+        }
     }
 
     private fun observeData(){
         productViewModel.products.observe(this, Observer {
             when(it){
                 is Resource.Loading -> showHomeLoading()
-                is Resource.Empty -> {Log.d("product", "empty")}
+                is Resource.Empty -> showHomeEmpty()
                 is Resource.Success -> showHomeContent(it.data)
-                is Resource.Error -> {Log.d("product", "error ${it.message}")}
+                is Resource.Error -> showHomeError()
             }
         })
     }
@@ -93,6 +119,26 @@ class HomeFragment : Fragment() {
         categoryGroupieItem?.viewState = MultiStateView.ViewState.LOADING
         popularProductGroupieItem?.viewState = MultiStateView.ViewState.LOADING
         allProductGroupieItem?.viewState = MultiStateView.ViewState.LOADING
+
+        groupieAdapter.notifyDataSetChanged()
+    }
+
+    private fun showHomeEmpty(){
+        bannerGroupieItem?.viewState = MultiStateView.ViewState.EMPTY
+        categoryGroupieItem?.viewState = MultiStateView.ViewState.EMPTY
+        popularProductGroupieItem?.viewState = MultiStateView.ViewState.EMPTY
+        allProductGroupieItem?.viewState = MultiStateView.ViewState.EMPTY
+
+        groupieAdapter.notifyDataSetChanged()
+    }
+
+    private fun showHomeError(){
+        bannerGroupieItem?.viewState = MultiStateView.ViewState.ERROR
+        categoryGroupieItem?.viewState = MultiStateView.ViewState.ERROR
+        popularProductGroupieItem?.viewState = MultiStateView.ViewState.ERROR
+        allProductGroupieItem?.viewState = MultiStateView.ViewState.ERROR
+
+        groupieAdapter.notifyDataSetChanged()
     }
 
     private fun showHomeContent(datas: List<Product>){
@@ -101,49 +147,35 @@ class HomeFragment : Fragment() {
         popularProductGroupieItem?.viewState = MultiStateView.ViewState.CONTENT
         allProductGroupieItem?.viewState = MultiStateView.ViewState.CONTENT
 
-        groupieAdapter.add(HeaderGroupieItem("Produk Diskon Hari Ini"))
-        groupieAdapter.add(showBannerItem(datas))
+        showBannerItem(datas)
+        showCategoryItem(datas)
+        showPopularProductItem(datas)
+        showAllProductItem(datas)
 
-        groupieAdapter.add(HeaderGroupieItem("Kategori Produk"))
-        groupieAdapter.add(showCategoryItem(datas))
-
-        groupieAdapter.add(HeaderGroupieItem("Produk Terlaris"))
-        groupieAdapter.add(showPopularProductItem(datas))
-
-        groupieAdapter.add(HeaderGroupieItem("Semua Produk"))
-        groupieAdapter.add(showAllProductItem(datas))
-
-        rvHomeContent.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = groupieAdapter
-        }
+        groupieAdapter.notifyDataSetChanged()
     }
 
-    private fun showBannerItem(datas:List<Product>):Group{
+    private fun showBannerItem(datas:List<Product>){
         val banners = datas.filter { it.discount != "0%" }
         bannerGroupieItem?.add(banners)
-        return bannerGroupieItem!!
     }
 
-    private fun showCategoryItem(datas:List<Product>):Group{
+    private fun showCategoryItem(datas:List<Product>){
         val categories = mutableListOf<Category>()
         datas.distinctBy { it.grade }.forEach {product->
             val category = Category(product.gradeColor, product.grade)
             categories.add(category)
         }
         categoryGroupieItem?.add(categories)
-        return categoryGroupieItem!!
     }
 
-    private fun showPopularProductItem(datas: List<Product>):Group{
+    private fun showPopularProductItem(datas: List<Product>){
         val popularProducts = datas.filter { it.rating > 4 }
         popularProductGroupieItem?.add(popularProducts)
-        return popularProductGroupieItem!!
     }
 
-    private fun showAllProductItem(datas: List<Product>):Group{
-        popularProductGroupieItem?.add(datas)
-        return popularProductGroupieItem!!
+    private fun showAllProductItem(datas: List<Product>){
+        allProductGroupieItem?.add(datas)
     }
 
     private fun toProductDetail(data:Product){

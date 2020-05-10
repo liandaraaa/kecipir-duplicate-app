@@ -6,8 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/dimen_16dp"
+    app:msv_errorView="@layout/layout_error"
+    app:msv_emptyView="@layout/layout_empty"
     app:msv_loadingView="@layout/item_shimmer_banner"
-    app:msv_viewState="content">
+    app:msv_viewState="loading">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

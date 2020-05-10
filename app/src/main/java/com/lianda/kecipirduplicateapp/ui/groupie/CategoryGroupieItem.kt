@@ -6,12 +6,9 @@ import com.kennyc.view.MultiStateView
 import com.lianda.kecipirduplicateapp.R
 import com.lianda.kecipirduplicateapp.data.model.Category
 import com.lianda.kecipirduplicateapp.ui.adapter.CategoryAdapter
-import com.lianda.kecipirduplicateapp.utils.hideLoading
-import com.lianda.kecipirduplicateapp.utils.showLoading
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
-import kotlinx.android.synthetic.main.layout_category_content.*
-import kotlinx.android.synthetic.main.layout_shimmer_category.*
+import kotlinx.android.synthetic.main.layout_category.*
 
 class CategoryGroupieItem (val context: Context, var datas:List<Category>): Item(){
 
@@ -28,7 +25,7 @@ class CategoryGroupieItem (val context: Context, var datas:List<Category>): Item
         }
     }
 
-    override fun getLayout(): Int = R.layout.layout_category_content
+    override fun getLayout(): Int = R.layout.layout_category
 
     fun add(datas: List<Category>){
         this.datas = datas

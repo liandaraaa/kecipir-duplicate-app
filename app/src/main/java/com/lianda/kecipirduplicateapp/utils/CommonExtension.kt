@@ -25,8 +25,8 @@ fun View.visible(){
 fun AppCompatActivity.replaceFragment(layoutId:Int, fragment:Fragment, isBackStack:Boolean = false){
     supportFragmentManager
         .beginTransaction()
+        .addToBackStack(if(isBackStack) null else fragment.tag)
         .replace(layoutId, fragment)
-        .addToBackStack(if(isBackStack) fragment.tag else null)
         .commit()
 }
 
