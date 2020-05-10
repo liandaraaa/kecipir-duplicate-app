@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.kennyc.view.MultiStateView
 import com.lianda.kecipirduplicateapp.R
 import com.lianda.kecipirduplicateapp.data.model.Product
 import com.lianda.kecipirduplicateapp.depth.service.model.Resource
@@ -19,6 +20,7 @@ import com.lianda.kecipirduplicateapp.ui.viewmodel.ProductViewModel
 import com.lianda.kecipirduplicateapp.utils.getCurrency
 import com.lianda.kecipirduplicateapp.utils.showImageUrl
 import kotlinx.android.synthetic.main.activity_product_detail.*
+import kotlinx.android.synthetic.main.layout_product.*
 import org.jetbrains.anko.share
 import org.jetbrains.anko.startActivity
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -79,13 +81,12 @@ class ProductDetailActivity : AppCompatActivity() {
     private fun observeData() {
         productVieModel.products.observe(this, Observer {
             when (it) {
-                is Resource.Loading -> {
-                    Log.d("product", "loading")
-                }
+                is Resource.Loading -> msvProduct.viewState = MultiStateView.ViewState.LOADING
                 is Resource.Empty -> {
                     Log.d("product", "empty")
                 }
                 is Resource.Success -> {
+                    msvProduct.viewState = MultiStateView.ViewState.CONTENT
                     showProducts(it.data)
                 }
                 is Resource.Error -> {

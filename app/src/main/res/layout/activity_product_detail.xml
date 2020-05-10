@@ -350,8 +350,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider_three" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvProduct"
+                <include
+                    layout="@layout/layout_product"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"

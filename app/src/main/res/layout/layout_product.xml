@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/msvProduct"
     app:msv_loadingView="@layout/layout_shimmer_product"
     app:msv_viewState="content">
 
