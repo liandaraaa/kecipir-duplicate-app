@@ -20,6 +20,7 @@ import com.lianda.kecipirduplicateapp.ui.groupie.ProductGroupieItem
 import com.lianda.kecipirduplicateapp.ui.product.detail.ProductDetailActivity
 import com.lianda.kecipirduplicateapp.ui.product.list.ProductListActivity
 import com.lianda.kecipirduplicateapp.ui.viewmodel.ProductViewModel
+import com.lianda.kecipirduplicateapp.utils.enum.ProductType
 import com.lianda.kecipirduplicateapp.utils.getCurrentDate
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -75,7 +76,9 @@ class HomeFragment : Fragment() {
         bannerGroupieItem = BannerGroupieItem(requireContext(), mutableListOf()) { product->
             toProductDetail(product)
         }
-        categoryGroupieItem = CategoryGroupieItem(requireContext(), mutableListOf())
+        categoryGroupieItem = CategoryGroupieItem(requireContext(), mutableListOf()){selectedCategory->
+            toProductList(ProductType.CATEGORY.type, selectedCategory)
+        }
         popularProductGroupieItem = ProductGroupieItem(requireContext(), mutableListOf()){ product->
             toProductDetail(product)
         }
@@ -94,12 +97,12 @@ class HomeFragment : Fragment() {
         section.add(categoryGroupieItem!!)
 
         section.add(HeaderGroupieItem(getString(R.string.title_popular_product)) {
-            toProductList(true)
+            toProductList(ProductType.POPULAR.type)
         })
         section.add(popularProductGroupieItem!!)
 
         section.add(HeaderGroupieItem(getString(R.string.title_all_product)){
-            toProductList()
+            toProductList(ProductType.ALL_PRODUCT.type)
         })
         section.add(allProductGroupieItem!!)
 
@@ -190,7 +193,7 @@ class HomeFragment : Fragment() {
         ProductDetailActivity.start(requireContext(), data)
     }
 
-    private fun toProductList(isPopularProduct:Boolean = false){
-        ProductListActivity.start(requireContext(), isPopularProduct)
+    private fun toProductList(productType:Int, selectedCategory:String = ""){
+        ProductListActivity.start(requireContext(), productType, selectedCategory)
     }
 }

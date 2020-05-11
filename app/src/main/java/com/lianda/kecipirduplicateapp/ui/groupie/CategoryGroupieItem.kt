@@ -10,14 +10,14 @@ import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
 import kotlinx.android.synthetic.main.layout_category.*
 
-class CategoryGroupieItem (val context: Context, var datas:List<Category>): Item(){
+class CategoryGroupieItem (val context: Context, var datas:List<Category>, val onCategoryClicked:((category:String)->Unit)? = null): Item(){
 
     var viewState = MultiStateView.ViewState.LOADING
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         with(viewHolder){
             msvCategory.viewState = viewState
-            val categoryAdapter = CategoryAdapter(context, datas)
+            val categoryAdapter = CategoryAdapter(context, datas, onCategoryClicked)
             rvCategory.apply {
                 layoutManager = GridLayoutManager(context, 3)
                 adapter = categoryAdapter
