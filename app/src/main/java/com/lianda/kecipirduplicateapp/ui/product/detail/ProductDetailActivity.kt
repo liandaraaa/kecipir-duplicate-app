@@ -63,6 +63,7 @@ class ProductDetailActivity : AppCompatActivity() {
             tvDiscount.text = discount
             tvPromoPrice.text = getCurrency(promoPrice)
             tvPrice.text = getCurrency(sellPrice)
+            tvProductSold.text = String.format(getString(R.string.format_product_sold), qtyCart)
             tvGrade.text = grade
             tvGrade.setBackgroundColor(Color.parseColor(gradeColor))
             tvFarmer.text = farmer

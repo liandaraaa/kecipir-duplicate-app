@@ -12,7 +12,7 @@
     <string name="sample_veggie_name">Jagung</string>
     <string name="action_see_all">Lihat Semua</string>
     <string name="label_farmer">Petani</string>
-    <string name="format_product_sold">51 Produk Terjual</string>
+    <string name="format_product_sold">%d Produk Terjual</string>
     <string name="sample_total_rating">5.0</string>
     <string name="label_review_product">Review Produk</string>
     <string name="title_todays_discount">Produk Diskon Hari Ini</string>

@@ -310,36 +310,12 @@
                     app:layout_constraintTop_toBottomOf="@id/tvLavelOrganicLevel"
                     tools:text="@tools:sample/lorem" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvLabelDescription"
-                    style="@style/SubHeaderTextView.Primary"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="@dimen/dimen_16dp"
-                    android:text="Deskripsi Manfaat Produk"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvOrganicLevel" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvDescription"
-                    style="@style/BodyTextView.Grey"
-                    android:layout_width="0dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvLabelDescription"
-                    tools:text="@tools:sample/lorem" />
-
                 <View
                     android:id="@+id/divider_three"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_2dp"
                     android:layout_marginTop="@dimen/dimen_16dp"
-                    app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+                    app:layout_constraintTop_toBottomOf="@id/tvOrganicLevel" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvLabelProduct"

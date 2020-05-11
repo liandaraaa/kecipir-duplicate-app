@@ -17,7 +17,8 @@ class ProductGroupieItem (val context:Context, var datas:List<Product>, val onPr
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         with(viewHolder){
             msvProduct.viewState = viewState
-            val productAdapter = ProductAdapter(context, datas, onProductClick)
+            val productAdapter = ProductAdapter(context, datas, onProductClick, ProductAdapter.FEW_PRODUCT
+            )
             rvProduct.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = productAdapter
